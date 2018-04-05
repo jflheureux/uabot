@@ -232,6 +232,11 @@ func (v *Visit) sendClickEvent(rank int, quickview bool, customData map[string]i
 
 	event.CustomData["author"] = generateRandomAuthor(event.DocumentTitle)
 
+	event.CustomData["documentURL"] = event.DocumentURI
+	event.CustomData["documentTitle"] = event.DocumentTitle
+	event.CustomData["contentIDKey"] = "urihash"
+	event.CustomData["contentIDValue"] = event.DocumentURIHash
+
 	err := v.UAClient.SendClickEvent(event)
 	if err != nil {
 		return err
